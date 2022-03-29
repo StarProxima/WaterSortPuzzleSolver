@@ -1,0 +1,15 @@
+C:\GitHub\WaterSortPuzzleSolver\WaterSortPuzzleSolver\WaterSortPuzzleSolver\bin\Debug\net6.0\WaterSortPuzzleSolver.exe
+C:\GitHub\WaterSortPuzzleSolver\WaterSortPuzzleSolver\WaterSortPuzzleSolver\bin\Debug\net6.0\WaterSortPuzzleSolver.deps.json
+C:\GitHub\WaterSortPuzzleSolver\WaterSortPuzzleSolver\WaterSortPuzzleSolver\bin\Debug\net6.0\WaterSortPuzzleSolver.runtimeconfig.json
+C:\GitHub\WaterSortPuzzleSolver\WaterSortPuzzleSolver\WaterSortPuzzleSolver\bin\Debug\net6.0\WaterSortPuzzleSolver.dll
+C:\GitHub\WaterSortPuzzleSolver\WaterSortPuzzleSolver\WaterSortPuzzleSolver\bin\Debug\net6.0\ref\WaterSortPuzzleSolver.dll
+C:\GitHub\WaterSortPuzzleSolver\WaterSortPuzzleSolver\WaterSortPuzzleSolver\bin\Debug\net6.0\WaterSortPuzzleSolver.pdb
+C:\GitHub\WaterSortPuzzleSolver\WaterSortPuzzleSolver\WaterSortPuzzleSolver\obj\Debug\net6.0\WaterSortPuzzleSolver.csproj.AssemblyReference.cache
+C:\GitHub\WaterSortPuzzleSolver\WaterSortPuzzleSolver\WaterSortPuzzleSolver\obj\Debug\net6.0\WaterSortPuzzleSolver.GeneratedMSBuildEditorConfig.editorconfig
+C:\GitHub\WaterSortPuzzleSolver\WaterSortPuzzleSolver\WaterSortPuzzleSolver\obj\Debug\net6.0\WaterSortPuzzleSolver.AssemblyInfoInputs.cache
+C:\GitHub\WaterSortPuzzleSolver\WaterSortPuzzleSolver\WaterSortPuzzleSolver\obj\Debug\net6.0\WaterSortPuzzleSolver.AssemblyInfo.cs
+C:\GitHub\WaterSortPuzzleSolver\WaterSortPuzzleSolver\WaterSortPuzzleSolver\obj\Debug\net6.0\WaterSortPuzzleSolver.csproj.CoreCompileInputs.cache
+C:\GitHub\WaterSortPuzzleSolver\WaterSortPuzzleSolver\WaterSortPuzzleSolver\obj\Debug\net6.0\WaterSortPuzzleSolver.dll
+C:\GitHub\WaterSortPuzzleSolver\WaterSortPuzzleSolver\WaterSortPuzzleSolver\obj\Debug\net6.0\ref\WaterSortPuzzleSolver.dll
+C:\GitHub\WaterSortPuzzleSolver\WaterSortPuzzleSolver\WaterSortPuzzleSolver\obj\Debug\net6.0\WaterSortPuzzleSolver.pdb
+C:\GitHub\WaterSortPuzzleSolver\WaterSortPuzzleSolver\WaterSortPuzzleSolver\obj\Debug\net6.0\WaterSortPuzzleSolver.genruntimeconfig.cache

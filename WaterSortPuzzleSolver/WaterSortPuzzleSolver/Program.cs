@@ -7,7 +7,7 @@ namespace WaterSortPuzzleSolver
     {
         System.Collections.Hashtable hashtable;
 
-        public bool Check(Flasks newFlasks)
+        public bool Check(ref Flasks newFlasks)
         {
             if (hashtable.ContainsKey(newFlasks.flasks))
             {
@@ -27,6 +27,11 @@ namespace WaterSortPuzzleSolver
             return false;
         }
 
+        //public Flasks Replacement(Flasks newFlasks)
+        //{
+        //    return hashtable[newFlasks.flasks] as Flasks;
+        //}
+
         public Hashtable()
         {
             hashtable = new System.Collections.Hashtable();
@@ -35,7 +40,7 @@ namespace WaterSortPuzzleSolver
     }
     public class Flasks
     {
-        int maxColors = 4;
+        int maxColors;
 
         public List<List<int>> flasks;
 
@@ -53,6 +58,36 @@ namespace WaterSortPuzzleSolver
             else Console.WriteLine("invalid transfer");
         }
 
+        public void InitializationRandom()
+        {
+            var random = new Random();
+
+            int flasksCount = random.Next(2, 10);
+            for (int i = 0; i < flasksCount; i++)
+            {
+                
+                flasks.Add(new List<int>());
+
+                int flaskCount = random.Next(2, maxColors + 1);
+                for (int j = 0; j < flaskCount; j++)
+                {
+                    flasks[i].Add(random.Next(1,8));
+                }
+            }
+        }
+
+        public void Print()
+        {
+            for (int i = 0; i < flasks.Count; i++)
+            {
+                for (int j = 0; j < flasks[i].Count; j++)
+                {
+                    Console.Write(flasks[i][j] + " ");
+                }
+                Console.WriteLine();
+            }
+        }
+
         public Flasks(int maxColors)
         {
             this.maxColors = maxColors;
@@ -65,6 +100,10 @@ namespace WaterSortPuzzleSolver
     {
         static void Main(string[] args)
         {
+            Flasks flasks = new Flasks(4);
+            flasks.InitializationRandom();
+            flasks.Print();
+
             Console.WriteLine("Hello World!");
         }
     }
