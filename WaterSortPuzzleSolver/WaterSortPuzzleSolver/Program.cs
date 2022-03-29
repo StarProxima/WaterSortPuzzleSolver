@@ -7,6 +7,26 @@ namespace WaterSortPuzzleSolver
     {
         System.Collections.Hashtable hashtable;
 
+        public bool Check(Flasks newFlasks)
+        {
+            if (hashtable.ContainsKey(newFlasks.flasks))
+            {
+                if ((hashtable[newFlasks.flasks] as Flasks).flasks.Count > newFlasks.flasks.Count)
+                {
+                    hashtable[newFlasks.flasks] = newFlasks;
+                    return false;
+                }
+
+                return true;
+            }
+            else
+            {
+                hashtable.Add(newFlasks.flasks, newFlasks);
+            }
+
+            return false;
+        }
+
         public Hashtable()
         {
             hashtable = new System.Collections.Hashtable();
@@ -21,7 +41,7 @@ namespace WaterSortPuzzleSolver
 
         public List<(int, int)> path;
 
-        public void transfer(int from, int to)
+        public void Transfer(int from, int to)
         {
             if (flasks[from].Count > 0 && flasks[to].Count < maxColors)
             {
