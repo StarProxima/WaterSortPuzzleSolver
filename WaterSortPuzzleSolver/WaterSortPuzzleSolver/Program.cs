@@ -3,22 +3,31 @@ using System.Collections;
 
 namespace WaterSortPuzzleSolver
 {
-
-    class Flasks
+    public class Hashtable
     {
-       int maxColors = 4;
+        System.Collections.Hashtable hashtable;
 
-        List<List<int>> list;
+        public Hashtable()
+        {
+            hashtable = new System.Collections.Hashtable();
+        }
 
-        List<(int, int)> path;
+    }
+    public class Flasks
+    {
+        int maxColors = 4;
+
+        public List<List<int>> flasks;
+
+        public List<(int, int)> path;
 
         public void transfer(int from, int to)
         {
-            if (list[from].Count > 0 && list[to].Count < maxColors)
+            if (flasks[from].Count > 0 && flasks[to].Count < maxColors)
             {
-                int t = list[from].Last();
-                list[to].Add(t);
-                list[from].Remove(t);
+                int t = flasks[from].Last();
+                flasks[to].Add(t);
+                flasks[from].Remove(t);
                 path.Add((from, to));
             }
             else Console.WriteLine("invalid transfer");
@@ -27,7 +36,7 @@ namespace WaterSortPuzzleSolver
         public Flasks(int maxColors)
         {
             this.maxColors = maxColors;
-            list = new List<List<int>>();
+            flasks = new List<List<int>>();
             path = new List<(int, int)>();
         }
     }
