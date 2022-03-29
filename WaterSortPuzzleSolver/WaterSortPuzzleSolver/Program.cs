@@ -12,6 +12,18 @@ namespace WaterSortPuzzleSolver
 
         List<(int, int)> path;
 
+        public void transfer(int from, int to)
+        {
+            if (list[from].Count > 0 && list[to].Count < maxColors)
+            {
+                int t = list[from].Last();
+                list[to].Add(t);
+                list[from].Remove(t);
+                path.Add((from, to));
+            }
+            else Console.WriteLine("invalid transfer");
+        }
+
         public Flasks(int maxColors)
         {
             this.maxColors = maxColors;
