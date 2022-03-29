@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\maksp\\source\\repos\\WaterSortPuzzleSolver\\WaterSortPuzzleSolver\\WaterSortPuzzleSolver.csproj",
+      "projectUniqueName": "C:\\GitHub\\WaterSortPuzzleSolver\\WaterSortPuzzleSolver\\WaterSortPuzzleSolver\\WaterSortPuzzleSolver.csproj",
       "projectName": "WaterSortPuzzleSolver",
-      "projectPath": "C:\\Users\\maksp\\source\\repos\\WaterSortPuzzleSolver\\WaterSortPuzzleSolver\\WaterSortPuzzleSolver.csproj",
+      "projectPath": "C:\\GitHub\\WaterSortPuzzleSolver\\WaterSortPuzzleSolver\\WaterSortPuzzleSolver\\WaterSortPuzzleSolver.csproj",
       "packagesPath": "C:\\Users\\maksp\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\maksp\\source\\repos\\WaterSortPuzzleSolver\\WaterSortPuzzleSolver\\obj\\",
+      "outputPath": "C:\\GitHub\\WaterSortPuzzleSolver\\WaterSortPuzzleSolver\\WaterSortPuzzleSolver\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\maksp\\AppData\\Roaming\\NuGet\\NuGet.Config",
