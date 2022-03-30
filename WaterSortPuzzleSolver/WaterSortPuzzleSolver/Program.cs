@@ -3,48 +3,83 @@ using System.Collections;
 
 namespace WaterSortPuzzleSolver
 {
-    //public class Hashtable
-    //{
-    //    public System.Collections.Hashtable hashtable;
-
-    //    public bool Check(Flasks newFlasks)
-    //    {
-    //        if (hashtable.ContainsKey(newFlasks.flasksState))
-    //        {
-    //            if ((hashtable[newFlasks.flasksState] as Flasks).path.Count > newFlasks.path.Count)
-    //            {
-    //                hashtable[newFlasks.flasksState] = new Flasks(newFlasks);
-    //                return false;
-    //            }
-                
-    //            return true;
-    //        }
-    //        else
-    //        {
-    //            hashtable.Add(newFlasks.flasksState, newFlasks);
-    //        }
+    
+    public class Flasks : List<List<int>>
+    {
+        public Flasks(Flasks t) : base()
+        {
+            for (int i = 0; i < t.Count; i++)
+            {
+                Add(new List<int>());
+                for (int j = 0; j < t[i].Count; j++)
+                {
+                    this[i].Add(t[i][j]);
+                }
+            }
+        }
+        public Flasks() : base()
+        {
             
-    //        return false;
-    //    }
+        }
+    }
+    public class HashtableFlask
+    {
+        
 
-    //    //public Flasks Replacement(Flasks newFlasks)
-    //    //{
-    //    //    return hashtable[newFlasks.flasks] as Flasks;
-    //    //}
+        public Dictionary<Flasks, FlasksStand> hashtable = new Dictionary<Flasks, FlasksStand>();
+        
+        public bool Check(FlasksStand newFlasks)
+        {
+            if (hashtable.ContainsKey(newFlasks.flasksState))
+            {
+                
+                if (hashtable[newFlasks.flasksState].path.Count > newFlasks.path.Count)
+                {
+                    hashtable[newFlasks.flasksState] = new FlasksStand(newFlasks);
+                    return false;
+                }
+                return true;
+            }
+            else
+            {
+                Flasks t = new Flasks (newFlasks.flasksState);
+                hashtable.Add(t, newFlasks);
+            }
+            return false;
+        }
 
-    //    public Hashtable()
-    //    {
-    //        hashtable = new System.Collections.Hashtable();
-    //    }
-
-    //}
-    public class Flasks
+        public HashtableFlask()
+        {
+            hashtable = new Dictionary<Flasks, FlasksStand>();
+        }
+    }
+    public class FlasksStand
     {
         int maxColors;
 
-        public List<List<int>> flasksState;
+        public Flasks flasksState;
 
         public List<(int, int)> path;
+
+        public static bool operator ==(FlasksStand fl1, FlasksStand fl2)
+        {
+            if (fl1.flasksState.Count != fl2.flasksState.Count) return false;
+            for (int i = 0; i < fl1.flasksState.Count; i++)
+            {
+                if (!Enumerable.SequenceEqual(fl1.flasksState[i], fl2.flasksState[i])) return false;
+            }
+            return true;
+        }
+
+        public static bool operator !=(FlasksStand fl1, FlasksStand fl2)
+        {
+            if (fl1.flasksState.Count != fl2.flasksState.Count) return true;
+            for (int i = 0; i < fl1.flasksState.Count; i++)
+            {
+                if (!Enumerable.SequenceEqual(fl1.flasksState[i], fl2.flasksState[i])) return true;
+            }
+            return false;
+        }
 
         public bool Transfer(int from, int to)
         {
@@ -52,7 +87,7 @@ namespace WaterSortPuzzleSolver
             {
                 int t = flasksState[from].Last();
                 flasksState[to].Add(t);
-                flasksState[from].Remove(t);
+                flasksState[from].RemoveAt(flasksState[from].Count -1);
                 path.Add((from, to));
                 return true;
             }
@@ -62,20 +97,22 @@ namespace WaterSortPuzzleSolver
 
         public void InitializationRandom()
         {
-            var random = new Random();
+            //var random = new Random();
 
-            int flasksCount = random.Next(4, 6);
-            for (int i = 0; i < flasksCount; i++)
-            {
+            //int flasksCount = random.Next(2, 8);
+            //for (int i = 0; i < flasksCount; i++)
+            //{
 
-                flasksState.Add(new List<int>());
+            //    flasksState.Add(new List<int>());
 
-                int flaskCount = random.Next(2, maxColors + 1);
-                for (int j = 0; j < flaskCount; j++)
-                {
-                    flasksState[i].Add(random.Next(1,8));
-                }
-            }
+            //    int flaskCount = random.Next(0, maxColors + 1);
+            //    for (int j = 0; j < flaskCount; j++)
+            //    {
+            //        flasksState[i].Add(random.Next(1,8));
+            //    }
+            //}
+
+            flasksState = new Flasks() {  new List<int>() {1,2 } , new List<int>() {4,2},new List<int>() { 1 }, new List<int>() { 1 } };
         }
 
         public void Print()
@@ -90,23 +127,23 @@ namespace WaterSortPuzzleSolver
             }
         }
 
-        public Flasks(int maxColors)
+        public FlasksStand(int maxColors)
         {
             this.maxColors = maxColors;
-            flasksState = new List<List<int>>();
+            flasksState = new Flasks();
             path = new List<(int, int)>();
         }
 
-        public Flasks(Flasks flasks)
+        public FlasksStand(FlasksStand flasks)
         {
             this.maxColors = flasks.maxColors;
-            flasksState = new List<List<int>>();
+            flasksState = new Flasks();
             for (int i = 0; i < flasks.flasksState.Count; i++)
             {
                 flasksState.Add(new List<int>());
                 for (int j = 0; j < flasks.flasksState[i].Count; j++)
                 {
-                    flasksState[i][j] = flasks.flasksState[i][j];
+                    flasksState[i].Add(flasks.flasksState[i][j]);
                 }
                 
             }
@@ -122,27 +159,26 @@ namespace WaterSortPuzzleSolver
     {
         static void Main(string[] args)
         {
-            Hashtable hashtable = new Hashtable();
-            Flasks flasks = new Flasks(4);
+            HashtableFlask hashtable = new HashtableFlask();
+            FlasksStand flasks = new FlasksStand(5);
             flasks.InitializationRandom();
-            //hashtable.Check(ref flasks);
              
             flasks.Print();
 
             var rand = new Random();
-            for (int i = 0; i < 1000;)
+            for (int i = 0; i < 10000;)
             {
                 if (flasks.Transfer(rand.Next(0, flasks.flasksState.Count), rand.Next(0, flasks.flasksState.Count)))
                 {
                     i++;
-                    //hashtable.Check(flasks);
+                    hashtable.Check(flasks);
                 }
-                    
-                
             }
 
             Console.WriteLine();
             flasks.Print();
+            Console.WriteLine();
+            Console.WriteLine(hashtable.hashtable.Count);
         }
     }
 }
