@@ -26,7 +26,7 @@ namespace WaterSortPuzzleSolver
             Console.WriteLine();
             flasks.Print();
             Console.WriteLine();
-            Console.WriteLine(hashtable.hashtable.Count);
+            Console.WriteLine(hashtable.Count);
         }
     }
 }

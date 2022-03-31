@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace WaterSortPuzzleSolver
 {
-    public class HashtableFlask
+    public class HashtableFlask : Dictionary<Flasks, FlasksStand>
     {
         private class FlasksComparer : IEqualityComparer<Flasks>
         {
@@ -39,16 +39,16 @@ namespace WaterSortPuzzleSolver
             }
         }
 
-        public Dictionary<Flasks, FlasksStand> hashtable = new Dictionary<Flasks, FlasksStand>(new FlasksComparer());
+      
 
         public bool Check(FlasksStand newFlasks)
         {
-            if (hashtable.ContainsKey(newFlasks.flasksState))
+            if (this.ContainsKey(newFlasks.flasksState))
             {
 
-                if (hashtable[newFlasks.flasksState].path.Count > newFlasks.path.Count)
+                if (this[newFlasks.flasksState].path.Count > newFlasks.path.Count)
                 {
-                    hashtable[newFlasks.flasksState] = new FlasksStand(newFlasks);
+                    this[newFlasks.flasksState] = new FlasksStand(newFlasks);
                     return false;
                 }
                 return true;
@@ -56,14 +56,13 @@ namespace WaterSortPuzzleSolver
             else
             {
                 Flasks t = new Flasks(newFlasks.flasksState);
-                hashtable.Add(t, newFlasks);
+                this.Add(t, newFlasks);
             }
             return false;
         }
 
-        public HashtableFlask()
+        public HashtableFlask() : base(new FlasksComparer())
         {
-            hashtable = new Dictionary<Flasks, FlasksStand>(new FlasksComparer());
         }
     }
 }
