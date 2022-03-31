@@ -3,16 +3,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Collections.ObjectModel;
 
 namespace WaterSortPuzzleSolver
 {
-    public class Flasks : List<List<int>>
+    public class Flasks : Collection<Collection<int>>
     {
         public Flasks(Flasks t) : base()
         {
             for (int i = 0; i < t.Count; i++)
             {
-                Add(new List<int>());
+                Add(new Collection<int>());
                 for (int j = 0; j < t[i].Count; j++)
                 {
                     this[i].Add(t[i][j]);
@@ -57,7 +58,7 @@ namespace WaterSortPuzzleSolver
             //for (int i = 0; i < flasksCount; i++)
             //{
 
-            //    flasksState.Add(new List<int>());
+            //    flasksState.Add(new Collection<int>());
 
             //    int flaskCount = random.Next(0, maxColors + 1);
             //    for (int j = 0; j < flaskCount; j++)
@@ -66,7 +67,7 @@ namespace WaterSortPuzzleSolver
             //    }
             //}
 
-            flasksState = new Flasks() { new List<int>() { 1, 2 }, new List<int>() { 4, 2 }, new List<int>() { 1 }, new List<int>() { 1 } };
+            flasksState = new Flasks() { new Collection<int>() { 1, 2 }, new Collection<int>() { 4, 2 }, new Collection<int>() { 1 }, new Collection<int>() { 1 } };
         }
 
         public void Print()
@@ -88,23 +89,23 @@ namespace WaterSortPuzzleSolver
             path = new List<(int, int)>();
         }
 
-        public FlasksStand(FlasksStand flasks)
+        public FlasksStand(FlasksStand flasksStand)
         {
-            this.maxColors = flasks.maxColors;
+            this.maxColors = flasksStand.maxColors;
             flasksState = new Flasks();
-            for (int i = 0; i < flasks.flasksState.Count; i++)
+            for (int i = 0; i < flasksStand.flasksState.Count; i++)
             {
-                flasksState.Add(new List<int>());
-                for (int j = 0; j < flasks.flasksState[i].Count; j++)
+                flasksState.Add(new Collection<int>());
+                for (int j = 0; j < flasksStand.flasksState[i].Count; j++)
                 {
-                    flasksState[i].Add(flasks.flasksState[i][j]);
+                    flasksState[i].Add(flasksStand.flasksState[i][j]);
                 }
 
             }
             path = new List<(int, int)>();
-            for (int i = 0; i < flasks.path.Count; i++)
+            for (int i = 0; i < flasksStand.path.Count; i++)
             {
-                path.Add(flasks.path[i]);
+                path.Add(flasksStand.path[i]);
             }
         }
     }

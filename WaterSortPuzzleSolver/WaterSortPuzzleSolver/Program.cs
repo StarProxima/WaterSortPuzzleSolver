@@ -19,14 +19,14 @@ namespace WaterSortPuzzleSolver
                 if (flasks.Transfer(rand.Next(0, flasks.flasksState.Count), rand.Next(0, flasks.flasksState.Count)))
                 {
                     i++;
-                    hashtable.Check(flasks);
+                    hashtable.Check(ref flasks);
                 }
             }
 
             Console.WriteLine();
             flasks.Print();
             Console.WriteLine();
-            Console.WriteLine(hashtable.Count);
+            Console.WriteLine(flasks.path.Count);
         }
     }
 }

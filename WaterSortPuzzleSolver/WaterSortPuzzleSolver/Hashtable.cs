@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace WaterSortPuzzleSolver
 {
+    //Хранит все добавленные flasksState с наименьшим количеством шагов
     public class HashtableFlask : Dictionary<Flasks, FlasksStand>
     {
         private class FlasksComparer : IEqualityComparer<Flasks>
@@ -39,24 +40,29 @@ namespace WaterSortPuzzleSolver
             }
         }
 
-      
 
-        public bool Check(FlasksStand newFlasks)
+
+        public bool Check(ref FlasksStand flasksStand)
         {
-            if (this.ContainsKey(newFlasks.flasksState))
+            if (this.ContainsKey(flasksStand.flasksState))
             {
 
-                if (this[newFlasks.flasksState].path.Count > newFlasks.path.Count)
+                if (this[flasksStand.flasksState].path.Count > flasksStand.path.Count)
                 {
-                    this[newFlasks.flasksState] = new FlasksStand(newFlasks);
+                    this[flasksStand.flasksState] = new FlasksStand(flasksStand);
                     return false;
+                }
+                else
+                {
+                    //Возможно, стоит не заменять текущий flasksStand на более выгодный по шагам, а возвращать новый FlasksStand, хз. 
+                    flasksStand = new FlasksStand(this[flasksStand.flasksState]);
                 }
                 return true;
             }
             else
             {
-                Flasks t = new Flasks(newFlasks.flasksState);
-                this.Add(t, newFlasks);
+                
+                this.Add(new Flasks(flasksStand.flasksState), new FlasksStand(flasksStand));
             }
             return false;
         }
