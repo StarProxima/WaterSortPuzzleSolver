@@ -33,8 +33,7 @@ namespace WaterSortPuzzleSolver
         int maxColors;
 
         public Flasks flasksState;
-
-        public List<(int, int)> path;
+        public int stepToReach;
 
         public bool Transfer(int from, int to)
         {
@@ -43,7 +42,7 @@ namespace WaterSortPuzzleSolver
                 int t = flasksState[from].Last();
                 flasksState[to].Add(t);
                 flasksState[from].RemoveAt(flasksState[from].Count - 1);
-                path.Add((from, to));
+                stepToReach++;
                 return true;
             }
             return false;
@@ -86,7 +85,7 @@ namespace WaterSortPuzzleSolver
         {
             this.maxColors = maxColors;
             flasksState = new Flasks();
-            path = new List<(int, int)>();
+            stepToReach = 0;
         }
 
         public FlasksStand(FlasksStand flasksStand)
@@ -102,11 +101,7 @@ namespace WaterSortPuzzleSolver
                 }
 
             }
-            path = new List<(int, int)>();
-            for (int i = 0; i < flasksStand.path.Count; i++)
-            {
-                path.Add(flasksStand.path[i]);
-            }
+            stepToReach = flasksStand.stepToReach;
         }
     }
 }

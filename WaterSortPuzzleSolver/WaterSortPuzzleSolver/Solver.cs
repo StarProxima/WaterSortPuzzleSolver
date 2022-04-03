@@ -19,6 +19,12 @@ namespace WaterSortPuzzleSolver
 				get { if (error == null) return path; else return null; }
 			}
 			private int stepCount;
+
+			private int minStepCount;
+			public double MinStepCount
+			{
+				get { if (error == null) return minStepCount; else return -1; }
+			}
 			public double StepCount
 			{
 				get { if (error == null) return stepCount; else return -1; }
@@ -39,32 +45,41 @@ namespace WaterSortPuzzleSolver
 				stepCount = sstepCount;
 				time = ttime;
 				path = fs.path;
+				minStepCount = fs.path.Length;
 				error = e;
             }
 		}
 
-
-		public stepCounter = 0;
-
-       public Rezult Solve(FlasksStand State) 
+		int heuristic(FlasksStand *State)
+        {
+			//
+        }
+		int iterationCounter = 0;
+		public List<(int, int)> path;
+		public HashtableFlask hashtable;
+		
+		public Rezult Solve(FlasksStand initialState)
 		{
-			this.path = []State{initialState}
-			this.pathVertices[initialState.String()] = struct{}{}
+			this.path = new List<(int, int)>();
+			this.hashtable.Check(ref initialState);
 
-			minDistance := this.heuristic(initialState)
-			var found bool
-			for {
+			int minDistance = this.heuristic(initialState);
+			bool found = false;
+			while(true) 
+			{
 				minDistance, found = this.iterate(initialState, minDistance)
-				if found {
+				if (found) 
+				{
 					return this.composePath(), nil
 				}
-				if minDistance == math.MaxInt {
+				if (minDistance == math.MaxInt) 
+				{
 					return nil, ErrNotExist
 				}
 			}
 		}
 
-
+		/*
 		func (s *IDAStarSolver) iterate(state State, minDistance int) (newMinDistance int, found bool) {
 			s.stats.Steps++
 			newDistance := len(s.path) + s.heuristic(state)
@@ -99,5 +114,6 @@ namespace WaterSortPuzzleSolver
 			}
 			return newMinDistance, false
 		}
+		*/
     }
 }

@@ -47,7 +47,7 @@ namespace WaterSortPuzzleSolver
             if (this.ContainsKey(flasksStand.flasksState))
             {
 
-                if (this[flasksStand.flasksState].path.Count > flasksStand.path.Count)
+                if (this[flasksStand.flasksState].stepToReach > flasksStand.stepToReach)
                 {
                     this[flasksStand.flasksState] = new FlasksStand(flasksStand);
                     return false;
