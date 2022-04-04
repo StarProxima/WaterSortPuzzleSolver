@@ -67,7 +67,10 @@ namespace WaterSortPuzzleSolver
 				}
 
 				heuristic += stand.flasksState.ColorTowers(i) - 1;
-				bottomColorsCount[flask[flask.Count - 1]]++;
+				if (bottomColorsCount.ContainsKey(flask[0]))
+					bottomColorsCount[flask[0]]++;
+				else
+					bottomColorsCount[flask[0]] = 1;
 			}
 
 			foreach(int bottomColorCnt in bottomColorsCount.Values) 
@@ -86,16 +89,14 @@ namespace WaterSortPuzzleSolver
 		public HashtableFlask hashtable;
 		
 		public Rezult Solve(FlasksStand initialState)
-		{
-			this.path = new List<(int, int)>();
-			
+		{		
 			this.hashtable.Check(ref initialState);
 
-			(int, int) minDistanceAndSteps = (this.heuristic(initialState),0);
+			(int, int) minDistanceAndSteps = (this.heuristic(initialState), -1);
 			while(true) 
 			{
 				minDistanceAndSteps = this.iterate(initialState, minDistanceAndSteps.Item1);
-				if (minDistanceAndSteps.Item2 != 0) 
+				if (minDistanceAndSteps.Item2 != -1) 
 				{
 					return new Rezult(iterationCounter, timeToSolve, this.path, minDistanceAndSteps.Item2);
 				}
@@ -106,13 +107,12 @@ namespace WaterSortPuzzleSolver
 			}
 		}
 
-
 		(int, int) iterate(FlasksStand stand, int minDistance ) 
 		{
 			this.iterationCounter++;
 			int newDistance = this.path.Count + this.heuristic(stand);
 			if (newDistance > minDistance) {
-				return (newDistance, 0);
+				return (newDistance, -1);
 			}
 			
 			if (stand.IsTerminal()) 
@@ -121,15 +121,20 @@ namespace WaterSortPuzzleSolver
 			}
 
 			int newMinDistance = Int32.MaxValue;
-			FlasksStand[] ReachableStands = stand.Reachable();
-			for (int i = 0; i < ReachableStands.Length; i++) {
-				if (this.hashtable.Check(ref ReachableStands[i])) {
+			int from = 0; int to = 0;
+			while (true)
+			{
+				FlasksStand newStand;
+				(newStand, from, to) = stand.ReachNextStand(from, to);
+				if (from == -1)
+					break;
+				if (this.hashtable.Check(ref newStand)) {
 					continue;
 				}
-				this.path.Add(ReachableStands[i].lastTransfer);
+				this.path.Add(newStand.lastTransfer);
 
-				(int, int) newReachableDistanceAndSteps = this.iterate(ReachableStands[i], minDistance);
-				if (newReachableDistanceAndSteps.Item2 != 0) {
+				(int, int) newReachableDistanceAndSteps = this.iterate(newStand, minDistance);
+				if (newReachableDistanceAndSteps.Item2 != -1) {
 					return (0, newReachableDistanceAndSteps.Item2);
 				}
 
@@ -137,12 +142,18 @@ namespace WaterSortPuzzleSolver
 					newMinDistance = newReachableDistanceAndSteps.Item1;
 				}
 
-				this.hashtable.RemoveStand(ref ReachableStands[i]);
+				this.hashtable.RemoveStand(ref newStand);
 				this.path.RemoveAt(this.path.Count - 1);
 			}
 			
-			return (newMinDistance, 0);
+			return (newMinDistance, -1);
 		}
 		
+
+		public Solver(HashtableFlask hhashtable)
+        {
+			hashtable = hhashtable;
+			path = new List<(int, int)>();
+		}
     }
 }

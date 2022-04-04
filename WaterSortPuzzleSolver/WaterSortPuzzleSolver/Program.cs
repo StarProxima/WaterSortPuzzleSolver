@@ -15,8 +15,8 @@ namespace WaterSortPuzzleSolver
 
             var rand = new Random();
 
-            //var r = new Solver();
-            //r.Solve(flasks);
+            var r = new Solver(hashtable);
+            r.Solve(flasks);
             for (int i = 0; i < 100000;)
             {
                 if (flasks.Transfer(rand.Next(0, flasks.flasksState.Count), rand.Next(0, flasks.flasksState.Count)))

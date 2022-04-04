@@ -68,12 +68,26 @@ namespace WaterSortPuzzleSolver
         {
 	        for (int i = 0; i < this.flasksState.Count; i ++) 
                 for (int j = 1; j < this.flasksState[i].Count; j++)
-                    if (this.flasksState[i][j] != this.flasksState[i][j])
+                    if (this.flasksState[i][j] != this.flasksState[i][j-1])
                         return false;
             return true;
         }
 
-
+        public (FlasksStand, int, int) ReachNextStand(int startfrom, int startto)
+        {
+            FlasksStand newStand = new FlasksStand(this);
+            for (; startfrom < this.flasksState.Count; startfrom++)
+                for (; startto < this.flasksState.Count; startto++)
+                {
+                    if (startfrom == startto)
+                        continue;
+                    if (newStand.Transfer(startfrom, startto))
+                    {
+                        return (newStand, startfrom, startto+1);
+                    }
+                }
+            return (null, -1, -1);
+        }
         public void InitializationRandom()
         {
             //var random = new Random();
