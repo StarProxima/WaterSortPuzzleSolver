@@ -3,58 +3,59 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Diagnostics;
+using System.Threading;
 
 namespace WaterSortPuzzleSolver
 {
 
+	class Rezult
+	{
+		private List<(int, int)> path;
+		public List<(int, int)> Path
+		{
+			get { if (error == null) return path; else return null; }
+		}
+		private int iterationCounter;
+		public int IterationCounter
+		{
+			get { if (error == null) return iterationCounter; else return -1; }
+		}
 
+		private int minStepCount;
+		public int MinStepCount
+		{
+			get { if (error == null) return minStepCount; else return -1; }
+		}
+
+
+		private Exception error;
+		public Exception Error
+		{
+			get { return error; }
+		}
+		private double time;
+		public double Time
+		{
+			get { if (error == null) return time; else return -1; }
+		}
+
+		public Rezult(int iiterationCounter, double ttime, List<(int, int)> ppath)
+		{
+			iterationCounter = iiterationCounter;
+			time = ttime;
+			path = ppath;
+			minStepCount = ppath.Count;
+			error = null;
+		}
+		public Rezult(Exception e)
+		{
+			error = e;
+		}
+	}
 
 	class Solver
 	{
-		public class Rezult
-		{
-			private List<(int,int)> path;
-			public List<(int, int)> Path
-			{
-				get { if (error == null) return path; else return null; }
-			}
-			private int iterationCounter;
-			public int IterationCounter
-			{
-				get { if (error == null) return IterationCounter; else return -1; }
-			}
-
-			private int minStepCount;
-			public int MinStepCount
-			{
-				get { if (error == null) return minStepCount; else return -1; }
-			}
-			
-			
-			private Exception error = null;
-			public Exception Error
-			{
-				get { return error; }
-			}
-			private double time;
-			public double Time
-			{
-				get { if (error == null) return time; else return -1; }
-			}
-
-			public Rezult(int iiterationCounter, double ttime, List<(int, int)> ppath, int mminStepCount)
-            {
-				iterationCounter = iiterationCounter;
-				time = ttime;
-				path = ppath;
-				minStepCount = mminStepCount;
-            }
-			public Rezult(Exception e)
-            {
-				error = e;
-            }
-		}
-
 		int heuristic(FlasksStand stand)
         {
 			int heuristic = 0;
@@ -89,35 +90,41 @@ namespace WaterSortPuzzleSolver
 		public HashtableFlask hashtable;
 		
 		public Rezult Solve(FlasksStand initialState)
-		{		
+		{
+			Stopwatch stopWatch = new Stopwatch();
+			stopWatch.Start();
+
 			this.hashtable.Check(ref initialState);
 
-			(int, int) minDistanceAndSteps = (this.heuristic(initialState), -1);
+			int minDistance = (this.heuristic(initialState));
 			while(true) 
 			{
-				minDistanceAndSteps = this.iterate(initialState, minDistanceAndSteps.Item1);
-				if (minDistanceAndSteps.Item2 != -1) 
+				minDistance = this.iterate(initialState, minDistance);
+				if (minDistance == -1) 
 				{
-					return new Rezult(iterationCounter, timeToSolve, this.path, minDistanceAndSteps.Item2);
+					stopWatch.Stop();
+					TimeSpan ts = stopWatch.Elapsed;
+					return new Rezult(iterationCounter, ts.TotalMilliseconds, this.path);
 				}
-				if (minDistanceAndSteps.Item1 == Int32.MaxValue) 
+				if (minDistance == Int32.MaxValue) 
 				{
+					stopWatch.Stop();
 					return new Rezult(new Exception("Решения не существует"));
 				}
 			}
 		}
 
-		(int, int) iterate(FlasksStand stand, int minDistance ) 
+		int iterate(FlasksStand stand, int minDistance ) 
 		{
 			this.iterationCounter++;
 			int newDistance = this.path.Count + this.heuristic(stand);
 			if (newDistance > minDistance) {
-				return (newDistance, -1);
+				return newDistance;
 			}
 			
 			if (stand.IsTerminal()) 
 			{
-				return (0, stand.stepToReach);
+				return -1;
 			}
 
 			int newMinDistance = Int32.MaxValue;
@@ -133,20 +140,20 @@ namespace WaterSortPuzzleSolver
 				}
 				this.path.Add(newStand.lastTransfer);
 
-				(int, int) newReachableDistanceAndSteps = this.iterate(newStand, minDistance);
-				if (newReachableDistanceAndSteps.Item2 != -1) {
-					return (0, newReachableDistanceAndSteps.Item2);
+				int newReachableDistance = this.iterate(newStand, minDistance);
+				if (newReachableDistance == -1) {
+					return -1;
 				}
 
-				if (newReachableDistanceAndSteps.Item1 < newMinDistance) {
-					newMinDistance = newReachableDistanceAndSteps.Item1;
+				if (newReachableDistance < newMinDistance) {
+					newMinDistance = newReachableDistance;
 				}
 
 				this.hashtable.RemoveStand(ref newStand);
 				this.path.RemoveAt(this.path.Count - 1);
 			}
 			
-			return (newMinDistance, -1);
+			return newMinDistance;
 		}
 		
 

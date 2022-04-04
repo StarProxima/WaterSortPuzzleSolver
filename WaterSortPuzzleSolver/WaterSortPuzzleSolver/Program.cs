@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 
+
 namespace WaterSortPuzzleSolver
 {
     internal class Program
@@ -15,8 +16,24 @@ namespace WaterSortPuzzleSolver
 
             var rand = new Random();
 
-            var r = new Solver(hashtable);
-            r.Solve(flasks);
+
+            Solver s = new Solver(hashtable);
+            Rezult rez = s.Solve(flasks);
+
+            Console.WriteLine();
+            foreach (var x in rez.Path)
+            {
+                Console.Write(x.Item1);
+                Console.Write("  ");
+                Console.WriteLine(x.Item2);
+            }
+            Console.WriteLine("Время в милисекундах - {0}", rez.Time);
+            Console.WriteLine("Количество итераций - {0}", rez.IterationCounter);
+        }
+    }
+}
+
+/*
             for (int i = 0; i < 100000;)
             {
                 if (flasks.Transfer(rand.Next(0, flasks.flasksState.Count), rand.Next(0, flasks.flasksState.Count)))
@@ -26,11 +43,4 @@ namespace WaterSortPuzzleSolver
                     hashtable.RemoveStand(ref flasks);
                 }
             }
-
-            Console.WriteLine();
-            flasks.Print();
-            Console.WriteLine();
-            Console.WriteLine(flasks.stepToReach);
-        }
-    }
-}
+*/

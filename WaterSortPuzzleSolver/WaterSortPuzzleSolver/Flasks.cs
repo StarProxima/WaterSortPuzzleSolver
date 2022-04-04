@@ -70,6 +70,13 @@ namespace WaterSortPuzzleSolver
                 for (int j = 1; j < this.flasksState[i].Count; j++)
                     if (this.flasksState[i][j] != this.flasksState[i][j-1])
                         return false;
+            for (int i = 0; i < this.flasksState.Count; i++)
+                if (flasksState[i].Count == 0)
+                    continue;
+                else
+                    for (int j = 0; j < this.flasksState.Count; j++)
+                        if (i != j  && flasksState[j].Count != 0 && flasksState[i][0] == flasksState[j][0])
+                            return false;
             return true;
         }
 
@@ -77,15 +84,18 @@ namespace WaterSortPuzzleSolver
         {
             FlasksStand newStand = new FlasksStand(this);
             for (; startfrom < this.flasksState.Count; startfrom++)
+            {
                 for (; startto < this.flasksState.Count; startto++)
                 {
                     if (startfrom == startto)
                         continue;
                     if (newStand.Transfer(startfrom, startto))
                     {
-                        return (newStand, startfrom, startto+1);
+                        return (newStand, startfrom, startto + 1);
                     }
                 }
+                startto = 0;
+            }
             return (null, -1, -1);
         }
         public void InitializationRandom()
