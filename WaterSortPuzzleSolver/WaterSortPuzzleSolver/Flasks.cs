@@ -1,4 +1,8 @@
-﻿
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Collections.ObjectModel;
 
 namespace WaterSortPuzzleSolver
@@ -16,6 +20,20 @@ namespace WaterSortPuzzleSolver
                 }
             }
         }
+        public int ColorTowers(int index)
+        {
+	        if (this[index].Count == 0) {
+                return 0;
+	        }
+            int count = 1;
+	        for (int i = 1; i < this[index].Count; i++) {
+		        if (this[index][i] != this[index][i-1]) {
+                    count++;
+		        }
+	        }
+            return count;
+        }
+
         public Flasks() : base()
         {
 
@@ -45,6 +63,8 @@ namespace WaterSortPuzzleSolver
             }
             return false;
         }
+
+
 
 
         public void InitializationRandom()

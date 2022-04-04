@@ -21,3 +21,10 @@ C:\Users\danek\Desktop\Лямбда\Лабы\WaterSortPuzzleSolver\WaterSortPuzz
 C:\Users\danek\Desktop\Лямбда\Лабы\WaterSortPuzzleSolver\WaterSortPuzzleSolver\WaterSortPuzzleSolver\obj\Debug\net6.0\WaterSortPuzzleSolver.dll
 C:\Users\danek\Desktop\Лямбда\Лабы\WaterSortPuzzleSolver\WaterSortPuzzleSolver\WaterSortPuzzleSolver\obj\Debug\net6.0\ref\WaterSortPuzzleSolver.dll
 C:\Users\danek\Desktop\Лямбда\Лабы\WaterSortPuzzleSolver\WaterSortPuzzleSolver\WaterSortPuzzleSolver\obj\Debug\net6.0\WaterSortPuzzleSolver.pdb
+C:\Users\danek\Desktop\Лямбда\Лабы\WaterSortPuzzleSolver\WaterSortPuzzleSolver\WaterSortPuzzleSolver\bin\Debug\net6.0\WaterSortPuzzleSolver.exe
+C:\Users\danek\Desktop\Лямбда\Лабы\WaterSortPuzzleSolver\WaterSortPuzzleSolver\WaterSortPuzzleSolver\bin\Debug\net6.0\WaterSortPuzzleSolver.deps.json
+C:\Users\danek\Desktop\Лямбда\Лабы\WaterSortPuzzleSolver\WaterSortPuzzleSolver\WaterSortPuzzleSolver\bin\Debug\net6.0\WaterSortPuzzleSolver.runtimeconfig.json
+C:\Users\danek\Desktop\Лямбда\Лабы\WaterSortPuzzleSolver\WaterSortPuzzleSolver\WaterSortPuzzleSolver\bin\Debug\net6.0\WaterSortPuzzleSolver.dll
+C:\Users\danek\Desktop\Лямбда\Лабы\WaterSortPuzzleSolver\WaterSortPuzzleSolver\WaterSortPuzzleSolver\bin\Debug\net6.0\ref\WaterSortPuzzleSolver.dll
+C:\Users\danek\Desktop\Лямбда\Лабы\WaterSortPuzzleSolver\WaterSortPuzzleSolver\WaterSortPuzzleSolver\bin\Debug\net6.0\WaterSortPuzzleSolver.pdb
+C:\Users\danek\Desktop\Лямбда\Лабы\WaterSortPuzzleSolver\WaterSortPuzzleSolver\WaterSortPuzzleSolver\obj\Debug\net6.0\WaterSortPuzzleSolver.genruntimeconfig.cache

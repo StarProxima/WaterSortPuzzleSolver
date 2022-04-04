@@ -1,4 +1,8 @@
-﻿using System.Text;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace WaterSortPuzzleSolver
 {
@@ -51,14 +55,34 @@ namespace WaterSortPuzzleSolver
             }
 		}
 
-		int heuristic(FlasksStand state)
+		int heuristic(FlasksStand stand)
         {
-			//
-			return 0;
+			int heuristic = 0;
+			Dictionary<int, int> bottomColorsCount = new Dictionary<int, int>();
+			for (int i = 0; i< stand.flasksState.Count; i++) {
+				var flask = stand.flasksState[i];
+
+				if (flask.Count == 0) {
+					continue;
+				}
+
+				heuristic += stand.flasksState.ColorTowers(i) - 1;
+				bottomColorsCount[flask[flask.Count - 1]]++;
+			}
+
+			foreach(int bottomColorCnt in bottomColorsCount.Values) 
+			{
+				heuristic += bottomColorCnt - 1;
+			}
+			return heuristic;
         }
+
 		int iterationCounter = 0;
+
 		double timeToSolve = 0;
+
 		public List<(int, int)> path;
+
 		public HashtableFlask hashtable;
 		
 		public Rezult Solve(FlasksStand initialState)
@@ -83,20 +107,21 @@ namespace WaterSortPuzzleSolver
 		}
 
 
-		(int, int) iterate(FlasksStand state, int minDistance ) 
+		(int, int) iterate(FlasksStand stand, int minDistance ) 
 		{
 			this.iterationCounter++;
-			int newDistance = this.path.Count + this.heuristic( state);
+			int newDistance = this.path.Count + this.heuristic(stand);
 			if (newDistance > minDistance) {
 				return (newDistance, 0);
 			}
-			/*
-			if (state.IsTerminal()) {
-				return (0, state.stepToReach);
+			
+			if (stand.IsTerminal()) 
+			{
+				return (0, stand.stepToReach);
 			}
 
 			int newMinDistance = Int32.MaxValue;
-			FlasksStand[] ReachableStands = state.Reachable();
+			FlasksStand[] ReachableStands = stand.Reachable();
 			for (int i = 0; i < ReachableStands.Length; i++) {
 				if (this.hashtable.Check(ref ReachableStands[i])) {
 					continue;
@@ -112,10 +137,10 @@ namespace WaterSortPuzzleSolver
 					newMinDistance = newReachableDistanceAndSteps.Item1;
 				}
 
-				this.hashtable.Delete(ReachableStands[i]);
+				this.hashtable.Delete(ref ReachableStands[i]);
 				this.path.RemoveAt(this.path.Count - 1);
 			}
-			*/
+			
 			return (newMinDistance, 0);
 		}
 		
