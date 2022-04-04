@@ -73,16 +73,6 @@ namespace WaterSortPuzzleSolver
             return false;
         }
 
-        public bool Delete(ref FlasksStand flasksStand)
-        {
-            if (this.ContainsKey(flasksStand.flasksState))
-            {
-                this[flasksStand.flasksState] = null;
-                return true;
-            }
-            return false;
-        }
-
         public HashtableFlask() : base(new FlasksComparer())
         {
         }

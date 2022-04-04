@@ -64,7 +64,14 @@ namespace WaterSortPuzzleSolver
             return false;
         }
 
-
+        public bool IsTerminal()
+        {
+	        for (int i = 0; i < this.flasksState.Count; i ++) 
+                for (int j = 1; j < this.flasksState[i].Count; j++)
+                    if (this.flasksState[i][j] != this.flasksState[i][j])
+                        return false;
+            return true;
+        }
 
 
         public void InitializationRandom()

@@ -137,7 +137,7 @@ namespace WaterSortPuzzleSolver
 					newMinDistance = newReachableDistanceAndSteps.Item1;
 				}
 
-				this.hashtable.Delete(ref ReachableStands[i]);
+				this.hashtable.RemoveStand(ref ReachableStands[i]);
 				this.path.RemoveAt(this.path.Count - 1);
 			}
 			

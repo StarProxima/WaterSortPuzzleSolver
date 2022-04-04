@@ -23,7 +23,7 @@ namespace WaterSortPuzzleSolver
                 {
                     i++;
                     hashtable.Check(ref flasks);
-                    hashtable.Delete(ref flasks);
+                    hashtable.RemoveStand(ref flasks);
                 }
             }
 
