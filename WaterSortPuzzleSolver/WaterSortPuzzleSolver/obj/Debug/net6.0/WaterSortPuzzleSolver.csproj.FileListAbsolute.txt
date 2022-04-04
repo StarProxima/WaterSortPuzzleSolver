@@ -13,3 +13,11 @@ C:\GitHub\WaterSortPuzzleSolver\WaterSortPuzzleSolver\WaterSortPuzzleSolver\obj\
 C:\GitHub\WaterSortPuzzleSolver\WaterSortPuzzleSolver\WaterSortPuzzleSolver\obj\Debug\net6.0\ref\WaterSortPuzzleSolver.dll
 C:\GitHub\WaterSortPuzzleSolver\WaterSortPuzzleSolver\WaterSortPuzzleSolver\obj\Debug\net6.0\WaterSortPuzzleSolver.pdb
 C:\GitHub\WaterSortPuzzleSolver\WaterSortPuzzleSolver\WaterSortPuzzleSolver\obj\Debug\net6.0\WaterSortPuzzleSolver.genruntimeconfig.cache
+C:\Users\danek\Desktop\Лямбда\Лабы\WaterSortPuzzleSolver\WaterSortPuzzleSolver\WaterSortPuzzleSolver\obj\Debug\net6.0\WaterSortPuzzleSolver.csproj.AssemblyReference.cache
+C:\Users\danek\Desktop\Лямбда\Лабы\WaterSortPuzzleSolver\WaterSortPuzzleSolver\WaterSortPuzzleSolver\obj\Debug\net6.0\WaterSortPuzzleSolver.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\danek\Desktop\Лямбда\Лабы\WaterSortPuzzleSolver\WaterSortPuzzleSolver\WaterSortPuzzleSolver\obj\Debug\net6.0\WaterSortPuzzleSolver.AssemblyInfoInputs.cache
+C:\Users\danek\Desktop\Лямбда\Лабы\WaterSortPuzzleSolver\WaterSortPuzzleSolver\WaterSortPuzzleSolver\obj\Debug\net6.0\WaterSortPuzzleSolver.AssemblyInfo.cs
+C:\Users\danek\Desktop\Лямбда\Лабы\WaterSortPuzzleSolver\WaterSortPuzzleSolver\WaterSortPuzzleSolver\obj\Debug\net6.0\WaterSortPuzzleSolver.csproj.CoreCompileInputs.cache
+C:\Users\danek\Desktop\Лямбда\Лабы\WaterSortPuzzleSolver\WaterSortPuzzleSolver\WaterSortPuzzleSolver\obj\Debug\net6.0\WaterSortPuzzleSolver.dll
+C:\Users\danek\Desktop\Лямбда\Лабы\WaterSortPuzzleSolver\WaterSortPuzzleSolver\WaterSortPuzzleSolver\obj\Debug\net6.0\ref\WaterSortPuzzleSolver.dll
+C:\Users\danek\Desktop\Лямбда\Лабы\WaterSortPuzzleSolver\WaterSortPuzzleSolver\WaterSortPuzzleSolver\obj\Debug\net6.0\WaterSortPuzzleSolver.pdb

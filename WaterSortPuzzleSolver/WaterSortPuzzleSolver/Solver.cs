@@ -1,38 +1,34 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Text;
 
 namespace WaterSortPuzzleSolver
 {
 
-	
 
-    class Solver
-    {
-		class Rezult
+
+	class Solver
+	{
+		public class Rezult
 		{
-			private List<int,int> path;
-			public double Path
+			private List<(int,int)> path;
+			public List<(int, int)> Path
 			{
 				get { if (error == null) return path; else return null; }
 			}
 			private int iterationCounter;
-			public double IterationCounter
+			public int IterationCounter
 			{
 				get { if (error == null) return IterationCounter; else return -1; }
 			}
 
 			private int minStepCount;
-			public double MinStepCount
+			public int MinStepCount
 			{
 				get { if (error == null) return minStepCount; else return -1; }
 			}
 			
 			
 			private Exception error = null;
-			public double Error
+			public Exception Error
 			{
 				get { return error; }
 			}
@@ -42,20 +38,20 @@ namespace WaterSortPuzzleSolver
 				get { if (error == null) return time; else return -1; }
 			}
 
-			Rezult(int iiterationCounter, double ttime, List<int, int> ppath, int mminStepCount)
+			public Rezult(int iiterationCounter, double ttime, List<(int, int)> ppath, int mminStepCount)
             {
 				iterationCounter = iiterationCounter;
 				time = ttime;
 				path = ppath;
 				minStepCount = mminStepCount;
             }
-			Rezult(Exception e)
+			public Rezult(Exception e)
             {
 				error = e;
             }
 		}
 
-		int heuristic(FlasksStand *State)
+		int heuristic(FlasksStand state)
         {
 			//
 			return 0;
@@ -68,56 +64,59 @@ namespace WaterSortPuzzleSolver
 		public Rezult Solve(FlasksStand initialState)
 		{
 			this.path = new List<(int, int)>();
+			
 			this.hashtable.Check(ref initialState);
 
-			pair<int, int> minDistanceAndSteps = make_pair(this.heuristic(initialState),0);
+			(int, int) minDistanceAndSteps = (this.heuristic(initialState),0);
 			while(true) 
 			{
-				minDistanceAndSteps = this.iterate(initialState, minDistanceAndSteps.first);
-				if (minDistanceAndSteps.second != 0) 
+				minDistanceAndSteps = this.iterate(initialState, minDistanceAndSteps.Item1);
+				if (minDistanceAndSteps.Item2 != 0) 
 				{
-					return Rezult(iterationCounter, timeToSolve, path, initialState.stepToReach, minDistanceAndSteps.second);
+					return new Rezult(iterationCounter, timeToSolve, this.path, minDistanceAndSteps.Item2);
 				}
-				if (minDistance == Int32.MaxValue) 
+				if (minDistanceAndSteps.Item1 == Int32.MaxValue) 
 				{
-					return Rezult(new Exception("Решения не существует"));
+					return new Rezult(new Exception("Решения не существует"));
 				}
 			}
 		}
 
 
-		pair<int, int> iterate(FlasksStand state, int minDistance ) 
+		(int, int) iterate(FlasksStand state, int minDistance ) 
 		{
 			this.iterationCounter++;
-			int newDistance = this.path.Length + this.heuristic(state);
+			int newDistance = this.path.Count + this.heuristic( state);
 			if (newDistance > minDistance) {
-				return make_pair(newDistance, 0);
+				return (newDistance, 0);
 			}
-
+			/*
 			if (state.IsTerminal()) {
-				return make_pair(0, state.stepToReach);
+				return (0, state.stepToReach);
 			}
 
 			int newMinDistance = Int32.MaxValue;
-			foreach (FlasksStand newState in state.Reachable()) {
-				if (this.hashtable.Check(newState)) {
+			FlasksStand[] ReachableStands = state.Reachable();
+			for (int i = 0; i < ReachableStands.Length; i++) {
+				if (this.hashtable.Check(ref ReachableStands[i])) {
 					continue;
 				}
-				this.path.Add(newState.lastTransfer);
+				this.path.Add(ReachableStands[i].lastTransfer);
 
-				pair<int, int> newReachableDistanceAndSteps = this.iterate(newState, minDistance);
-				if (newReachableDistanceAndSteps.second != 0) {
-					return make_pair(0, newReachableDistanceAndSteps.second);
+				(int, int) newReachableDistanceAndSteps = this.iterate(ReachableStands[i], minDistance);
+				if (newReachableDistanceAndSteps.Item2 != 0) {
+					return (0, newReachableDistanceAndSteps.Item2);
 				}
 
-				if (newReachableDistanceAndSteps.first < newMinDistance) {
-					newMinDistance = newReachableDistanceAndSteps.first;
+				if (newReachableDistanceAndSteps.Item1 < newMinDistance) {
+					newMinDistance = newReachableDistanceAndSteps.Item1;
 				}
 
-				this.hashtable.Delete(newState);
+				this.hashtable.Delete(ReachableStands[i]);
 				this.path.RemoveAt(this.path.Count - 1);
 			}
-			return make_pair(newMinDistance, 0);
+			*/
+			return (newMinDistance, 0);
 		}
 		
     }

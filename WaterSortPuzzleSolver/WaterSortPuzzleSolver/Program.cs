@@ -1,4 +1,4 @@
-﻿using System;
+﻿
 using System.Collections;
 
 namespace WaterSortPuzzleSolver
@@ -7,8 +7,8 @@ namespace WaterSortPuzzleSolver
     {
         static void Main(string[] args)
         {
-            //HashtableFlask hashtable = new HashtableFlask();
-            //FlasksStand flasks = new FlasksStand(5);
+            HashtableFlask hashtable = new HashtableFlask();
+            FlasksStand flasks = new FlasksStand(5);
             flasks.InitializationRandom();
              
             flasks.Print();
@@ -16,13 +16,14 @@ namespace WaterSortPuzzleSolver
             var rand = new Random();
 
             var r = new Solver();
-            r.Solve(FlasksStand);
+            r.Solve(flasks);
             for (int i = 0; i < 100000;)
             {
                 if (flasks.Transfer(rand.Next(0, flasks.flasksState.Count), rand.Next(0, flasks.flasksState.Count)))
                 {
                     i++;
                     hashtable.Check(ref flasks);
+                    hashtable.Delete(ref flasks);
                 }
             }
 
