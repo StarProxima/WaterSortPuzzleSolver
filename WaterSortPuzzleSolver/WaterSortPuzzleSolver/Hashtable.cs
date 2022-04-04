@@ -50,19 +50,27 @@ namespace WaterSortPuzzleSolver
                 if (this[flasksStand.flasksState].stepToReach > flasksStand.stepToReach)
                 {
                     this[flasksStand.flasksState] = new FlasksStand(flasksStand);
-                    return false;
                 }
                 else
                 {
                     //Возможно, стоит не заменять текущий flasksStand на более выгодный по шагам, а возвращать новый FlasksStand, хз. 
-                    flasksStand = new FlasksStand(this[flasksStand.flasksState]);
+                    //flasksStand = new FlasksStand(this[flasksStand.flasksState]);
                 }
                 return true;
             }
             else
             {
-                
                 this.Add(new Flasks(flasksStand.flasksState), new FlasksStand(flasksStand));
+            }
+            return false;
+        }
+
+        public bool Delete(ref FlasksStand flasksStand)
+        {
+            if (this.ContainsKey(flasksStand.flasksState))
+            {
+                this[flasksStand.flasksState] = null;
+                return true;
             }
             return false;
         }

@@ -34,6 +34,7 @@ namespace WaterSortPuzzleSolver
 
         public Flasks flasksState;
         public int stepToReach;
+        public pair<int, int> lastTransfer = make_pair(0,0);
 
         public bool Transfer(int from, int to)
         {
@@ -43,6 +44,7 @@ namespace WaterSortPuzzleSolver
                 flasksState[to].Add(t);
                 flasksState[from].RemoveAt(flasksState[from].Count - 1);
                 stepToReach++;
+                lastTransfer = make_pair(from, to);
                 return true;
             }
             return false;

@@ -18,17 +18,19 @@ namespace WaterSortPuzzleSolver
 			{
 				get { if (error == null) return path; else return null; }
 			}
-			private int stepCount;
+			private int iterationCounter;
+			public double IterationCounter
+			{
+				get { if (error == null) return IterationCounter; else return -1; }
+			}
 
 			private int minStepCount;
 			public double MinStepCount
 			{
 				get { if (error == null) return minStepCount; else return -1; }
 			}
-			public double StepCount
-			{
-				get { if (error == null) return stepCount; else return -1; }
-			}
+			
+			
 			private Exception error = null;
 			public double Error
 			{
@@ -40,12 +42,15 @@ namespace WaterSortPuzzleSolver
 				get { if (error == null) return time; else return -1; }
 			}
 
-			Rezult(int sstepCount, double ttime, FlasksStand fs, Exception e = null)
+			Rezult(int iiterationCounter, double ttime, List<int, int> ppath, int mminStepCount)
             {
-				stepCount = sstepCount;
+				iterationCounter = iiterationCounter;
 				time = ttime;
-				path = fs.path;
-				minStepCount = fs.path.Length;
+				path = ppath;
+				minStepCount = mminStepCount;
+            }
+			Rezult(Exception e)
+            {
 				error = e;
             }
 		}
@@ -53,8 +58,10 @@ namespace WaterSortPuzzleSolver
 		int heuristic(FlasksStand *State)
         {
 			//
+			return 0;
         }
 		int iterationCounter = 0;
+		double timeToSolve = 0;
 		public List<(int, int)> path;
 		public HashtableFlask hashtable;
 		
@@ -63,57 +70,55 @@ namespace WaterSortPuzzleSolver
 			this.path = new List<(int, int)>();
 			this.hashtable.Check(ref initialState);
 
-			int minDistance = this.heuristic(initialState);
-			bool found = false;
+			pair<int, int> minDistanceAndSteps = make_pair(this.heuristic(initialState),0);
 			while(true) 
 			{
-				minDistance, found = this.iterate(initialState, minDistance)
-				if (found) 
+				minDistanceAndSteps = this.iterate(initialState, minDistanceAndSteps.first);
+				if (minDistanceAndSteps.second != 0) 
 				{
-					return this.composePath(), nil
+					return Rezult(iterationCounter, timeToSolve, path, initialState.stepToReach, minDistanceAndSteps.second);
 				}
-				if (minDistance == math.MaxInt) 
+				if (minDistance == Int32.MaxValue) 
 				{
-					return nil, ErrNotExist
+					return Rezult(new Exception("Решения не существует"));
 				}
 			}
 		}
 
-		/*
-		func (s *IDAStarSolver) iterate(state State, minDistance int) (newMinDistance int, found bool) {
-			s.stats.Steps++
-			newDistance := len(s.path) + s.heuristic(state)
-			if newDistance > minDistance {
-				return newDistance, false
+
+		pair<int, int> iterate(FlasksStand state, int minDistance ) 
+		{
+			this.iterationCounter++;
+			int newDistance = this.path.Length + this.heuristic(state);
+			if (newDistance > minDistance) {
+				return make_pair(newDistance, 0);
 			}
 
-			if state.IsTerminal() {
-				return 0, true
+			if (state.IsTerminal()) {
+				return make_pair(0, state.stepToReach);
 			}
 
-			newMinDistance = math.MaxInt
-			for _, newState := range state.ReachableStates() {
-				newStateStr := newState.String()
-				if _, ok := s.pathVertices[newStateStr]; ok {
-					continue
+			int newMinDistance = Int32.MaxValue;
+			foreach (FlasksStand newState in state.Reachable()) {
+				if (this.hashtable.Check(newState)) {
+					continue;
 				}
-				s.pathVertices[newStateStr] = struct{}{}
-				s.path = append(s.path, newState)
+				this.path.Add(newState.lastTransfer);
 
-				newReachableDistance, found := s.iterate(newState, minDistance)
-				if found {
-					return 0, true
+				pair<int, int> newReachableDistanceAndSteps = this.iterate(newState, minDistance);
+				if (newReachableDistanceAndSteps.second != 0) {
+					return make_pair(0, newReachableDistanceAndSteps.second);
 				}
 
-				if newReachableDistance < newMinDistance {
-					newMinDistance = newReachableDistance
+				if (newReachableDistanceAndSteps.first < newMinDistance) {
+					newMinDistance = newReachableDistanceAndSteps.first;
 				}
 
-				delete(s.pathVertices, newStateStr)
-				s.path = s.path[:len(s.path)-1]
+				this.hashtable.Delete(newState);
+				this.path.RemoveAt(this.path.Count - 1);
 			}
-			return newMinDistance, false
+			return make_pair(newMinDistance, 0);
 		}
-		*/
+		
     }
 }
