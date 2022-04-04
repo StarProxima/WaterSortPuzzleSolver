@@ -63,6 +63,16 @@ namespace WaterSortPuzzleSolver
             return false;
         }
 
+        public bool RemoveStand(ref FlasksStand flasksStand)
+        {
+            if (this.ContainsKey(flasksStand.flasksState))
+            {
+                this.Remove(flasksStand.flasksState);
+                return true;
+            }
+            return false;
+        }
+
         public bool Delete(ref FlasksStand flasksStand)
         {
             if (this.ContainsKey(flasksStand.flasksState))
