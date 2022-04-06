@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Diagnostics;
 using System.Threading;
+using System.Threading.Tasks;
 
 namespace WaterSortPuzzleSolver
 {
@@ -61,19 +62,23 @@ namespace WaterSortPuzzleSolver
 			int heuristic = 0;
 			Dictionary<int, int> bottomColorsCount = new Dictionary<int, int>();
 			////!!!!
-			for (int i = 0; i< stand.flasksState.Count; i++) {
-				var flask = stand.flasksState[i];
+			///
+			Parallel.For(0, stand.flasksState.Count, i =>
+			{
+					 var flask = stand.flasksState[i];
 
-				if (flask.Count == 0) {
-					continue;
-				}
+					 if (flask.Count == 0)
+					 {
+					//continue;
+						Console.WriteLine("ТЫ ДОЛБАЕБ");
+					 }
 
-				heuristic += stand.flasksState.ColorTowers(i) - 1;
-				if (bottomColorsCount.ContainsKey(flask[0]))
-					bottomColorsCount[flask[0]]++;
-				else
-					bottomColorsCount[flask[0]] = 1;
-			}
+					 heuristic += stand.flasksState.ColorTowers(i) - 1;
+					 if (bottomColorsCount.ContainsKey(flask[0]))
+						 bottomColorsCount[flask[0]]++;
+					 else
+						 bottomColorsCount[flask[0]] = 1;
+			});
 			////!!!!
 			foreach (int bottomColorCnt in bottomColorsCount.Values) 
 			{
