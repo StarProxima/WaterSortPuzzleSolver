@@ -20,7 +20,7 @@ namespace WaterSortPuzzleSolver
             Solver s = new Solver(hashtable);
             Rezult rez = s.Solve(flasks);
 
-            Console.WriteLine();
+            Console.WriteLine();////!!!!
             foreach (var x in rez.Path)
             {
                 Console.Write(x.Item1);

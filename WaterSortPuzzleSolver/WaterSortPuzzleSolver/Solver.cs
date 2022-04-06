@@ -60,6 +60,7 @@ namespace WaterSortPuzzleSolver
         {
 			int heuristic = 0;
 			Dictionary<int, int> bottomColorsCount = new Dictionary<int, int>();
+			////!!!!
 			for (int i = 0; i< stand.flasksState.Count; i++) {
 				var flask = stand.flasksState[i];
 
@@ -73,8 +74,8 @@ namespace WaterSortPuzzleSolver
 				else
 					bottomColorsCount[flask[0]] = 1;
 			}
-
-			foreach(int bottomColorCnt in bottomColorsCount.Values) 
+			////!!!!
+			foreach (int bottomColorCnt in bottomColorsCount.Values) 
 			{
 				heuristic += bottomColorCnt - 1;
 			}
@@ -97,7 +98,8 @@ namespace WaterSortPuzzleSolver
 			this.hashtable.Check(ref initialState);
 
 			int minDistance = (this.heuristic(initialState));
-			while(true) 
+			////!!!!
+			while (true) 
 			{
 				minDistance = this.iterate(initialState, minDistance);
 				if (minDistance == -1) 
@@ -129,6 +131,7 @@ namespace WaterSortPuzzleSolver
 
 			int newMinDistance = Int32.MaxValue;
 			int from = 0; int to = 0;
+			////!!!!
 			while (true)
 			{
 				FlasksStand newStand;

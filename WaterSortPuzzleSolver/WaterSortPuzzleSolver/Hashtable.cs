@@ -12,10 +12,11 @@ namespace WaterSortPuzzleSolver
             public bool Equals(Flasks x, Flasks y)
             {
                 if (x.Count != y.Count) return false;
+                ////!!!!
                 for (int i = 0; i < x.Count; i++)
                 {
                     if (x[i].Count != y[i].Count) return false;
-
+                    ////!!!!
                     for (int j = 0; j < x[i].Count; j++)
                     {
                         if (!x[i].SequenceEqual(y[i])) return false;
@@ -27,6 +28,7 @@ namespace WaterSortPuzzleSolver
             public int GetHashCode(Flasks obj)
             {
                 int hashcode = 0;
+                ////!!!!
                 for (int i = 0; i < obj.Count; i++)
                     for (int j = 0; j < obj[i].Count; j++)
                     {

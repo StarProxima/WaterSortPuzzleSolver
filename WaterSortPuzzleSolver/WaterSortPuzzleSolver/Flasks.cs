@@ -10,7 +10,7 @@ namespace WaterSortPuzzleSolver
     public class Flasks : Collection<Collection<int>>
     {
         public Flasks(Flasks t) : base()
-        {
+        {////!!!!
             for (int i = 0; i < t.Count; i++)
             {
                 Add(new Collection<int>());
@@ -26,7 +26,8 @@ namespace WaterSortPuzzleSolver
                 return 0;
 	        }
             int count = 1;
-	        for (int i = 1; i < this[index].Count; i++) {
+            ////!!!!
+            for (int i = 1; i < this[index].Count; i++) {
 		        if (this[index][i] != this[index][i-1]) {
                     count++;
 		        }
@@ -79,7 +80,7 @@ namespace WaterSortPuzzleSolver
                             return false;
             return true;
         }
-
+        ////!!!!////!!!!
         public (FlasksStand, int, int) ReachNextStand(int startfrom, int startto)
         {
             FlasksStand newStand = new FlasksStand(this);
@@ -117,7 +118,7 @@ namespace WaterSortPuzzleSolver
 
             flasksState = new Flasks() { new Collection<int>() { 1, 2 }, new Collection<int>() { 4, 2 }, new Collection<int>() { 1 }, new Collection<int>() { 1 } };
         }
-
+        ////!!!!////!!!!
         public void Print()
         {
             for (int i = 0; i < flasksState.Count; i++)
@@ -136,7 +137,7 @@ namespace WaterSortPuzzleSolver
             flasksState = new Flasks();
             stepToReach = 0;
         }
-
+        ////!!!!////!!!!
         public FlasksStand(FlasksStand flasksStand)
         {
             this.maxColors = flasksStand.maxColors;
