@@ -1,8 +1,7 @@
 {
   "profiles": {
     "WaterSortPuzzleSolver": {
-      "commandName": "Project",
-      "workingDirectory": "C:\\Users\\danek\\Desktop\\Лямбда\\Лабы\\WaterSortPuzzleSolver\\WaterSortPuzzleSolver"
+      "commandName": "Project"
     }
   }
 }
