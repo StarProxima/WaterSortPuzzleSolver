@@ -29,6 +29,7 @@ namespace WaterSortPuzzleSolver
             }
             Console.WriteLine("Время в милисекундах - {0}", rez.Time);
             Console.WriteLine("Количество итераций - {0}", rez.IterationCounter);
+            Console.ReadKey();
         }
     }
 }
