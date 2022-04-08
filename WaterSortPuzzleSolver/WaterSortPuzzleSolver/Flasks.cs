@@ -69,6 +69,7 @@ namespace WaterSortPuzzleSolver
                 lastTransfer = (from,to);
                 return true;
             }
+           
             return false;
         }
 
@@ -112,25 +113,54 @@ namespace WaterSortPuzzleSolver
         public void InitializationRandom()
         {
             var random = new Random();
+            int flasksCount = 4;
 
-            int flasksCount = random.Next(2, 50);
-            //Parallel.For(0, flasksCount, i =>
             for (int i = 0; i < flasksCount; i++)
             {
-
                 flasksState.Add(new Collection<int>());
-
-                int flaskCount = random.Next(0, maxColors + 1);
-                //Parallel.For(0, flasksCount, i =>
+                int flaskCount = maxColors -1 ;
                 for (int j = 0; j < flaskCount; j++)
                 {
-                    flasksState[i].Add(random.Next(1, 50));
+                    flasksState[i].Add(i+1);
                 }
-                // );
-            }
-            //);
 
+            }
+
+            for (int i = 0; i < 1000000;)
+            {
+                if (this.Transfer(random.Next(0, this.flasksState.Count), random.Next(0, this.flasksState.Count)))
+                {
+                    i++;
+                }
+            }
+            //for (int i = 0; i < flasksCount; i++)
+            //{
+
+            //    flasksState.Add(new Collection<int>());
+
+            //    int flaskCount = random.Next(0, maxColors);
+            //    for (int j = 0; j < flaskCount; j++)
+            //    {
+            //        flasksState[i].Add(random.Next(1, maxColors + 1));
+            //    }
+
+            //}
+            //);
+            flasksState.Add(new Collection<int>()); //flasksState.Add(new Collection<int>());
             //flasksState = new Flasks() { new Collection<int>() { 3,3,1,4}, new Collection<int>() { 4 }, new Collection<int>() { 4 }, new Collection<int>() { 4,3,1 }, new Collection<int>() { 4 } };
+
+            //
+            //flasksState = new Flasks() {
+            //    new Collection<int>() { 1,1,2,3},
+            //    new Collection<int>() { 4,3,5,2 },
+            //    new Collection<int>() { 6,1,7,8 },
+            //    new Collection<int>() { 9,9,5,3 },
+            //    new Collection<int>() { 7,4,4,5 },
+            //    new Collection<int>() { 5,9,2,6},
+            //    new Collection<int>() { 8,7,2,8},
+            //    new Collection<int>() { 7,1,4,8},
+            //    new Collection<int>() { 6,3,6,9 },
+            //};
         }
         ////!!!!
         public void Print()
