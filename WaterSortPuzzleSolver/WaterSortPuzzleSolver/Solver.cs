@@ -131,6 +131,7 @@ namespace WaterSortPuzzleSolver
 		int iterate(FlasksStand stand, int minDistance ) 
 		{
 			this.iterationCounter++;
+
 			int newDistance = this.path.Count + this.heuristic(stand);
 			if (newDistance > minDistance) {
 				return newDistance;
@@ -170,7 +171,6 @@ namespace WaterSortPuzzleSolver
 			
 			return newMinDistance;
 		}
-		
 
 		public Solver(HashtableFlask hhashtable)
         {
