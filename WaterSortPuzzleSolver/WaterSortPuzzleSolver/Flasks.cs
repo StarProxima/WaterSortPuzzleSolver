@@ -9,6 +9,7 @@ namespace WaterSortPuzzleSolver
 {
     public class Flasks : Collection<Collection<int>>
     {
+        //максимум уровней одного цвета
         public int maxColorSize;
         
         public int ColorTowers(int index)
@@ -16,7 +17,7 @@ namespace WaterSortPuzzleSolver
 	        if (this[index].Count == 0) {
                 return 0;
 	        }
-            int count = 0;
+            int count = 1;
             
             for(int i = 1; i < this[index].Count ; i++) 
             {
@@ -41,7 +42,6 @@ namespace WaterSortPuzzleSolver
             
             return true;
         }
-
         public Flasks(Flasks t) : base()
         {
             for (int i = 0; i < t.Count; i++)
@@ -63,6 +63,7 @@ namespace WaterSortPuzzleSolver
 
     public class FlasksStand
     {
+        //максимум уровней в одной фласке
         int maxFlaskSize;
 
         public Flasks flasksState;
@@ -176,8 +177,8 @@ namespace WaterSortPuzzleSolver
                 for (; startto < this.flasksState.Count; startto++)
                 {
                     if (startfrom == startto 
-                        || (flasksState.FlaskIsTerminal(startto) && flasksState[startto].Count != 0)
-                        || (flasksState.FlaskIsTerminal(startfrom) && flasksState[startfrom].Count != 0 ))
+                        || (flasksState.ColorTowers(startto) == 1 && flasksState[startfrom].Count != 0)
+                        || (flasksState.ColorTowers(startfrom) == 1 && flasksState[startto].Count != 0))
                         continue;
                     
                     if (newStand.TransferTower(startfrom, startto))
@@ -223,9 +224,15 @@ namespace WaterSortPuzzleSolver
             }
             stepToReach = 0;
 
+            /*
+            flasksState = new Flasks() {
+                new Collection<int>() { 1,0},
+                new Collection<int>() { 0,2 },
+                new Collection<int>() { 1,2 },
+            };
+            */
+            flasksState.maxColorSize = 2;
 
-
-            
         }
 
         public void Print()
