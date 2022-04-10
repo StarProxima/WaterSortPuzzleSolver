@@ -75,9 +75,7 @@ namespace WaterSortPuzzleSolver
 					heuristic++;
 				else
 					bottomColorsCount[flask[0]] = 0;
-					
 			}
-			
 			return heuristic;
         }
 
@@ -97,7 +95,7 @@ namespace WaterSortPuzzleSolver
 			this.hashtable.Check(ref initialState);
 
 			int minDistance = (this.heuristic(initialState));
-			////!!!!
+			
 			while (true) 
 			{
 				minDistance = this.iterate(initialState, minDistance);
@@ -131,7 +129,7 @@ namespace WaterSortPuzzleSolver
 
 			int newMinDistance = Int32.MaxValue;
 			int from = 0; int to = 0;
-			////!!!!
+			
 			while (true)
 			{
 				FlasksStand newStand;
