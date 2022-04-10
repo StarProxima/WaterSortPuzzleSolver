@@ -116,6 +116,7 @@ namespace WaterSortPuzzleSolver
 			while (true) 
 			{
 				minDistance = this.iterate(initialState, minDistance);
+				
 				if (minDistance == -1) 
 				{
 					stopWatch.Stop();
@@ -133,14 +134,6 @@ namespace WaterSortPuzzleSolver
 		int iterate(FlasksStand stand, int minDistance ) 
 		{
 			this.iterationCounter++;
-
-			if (saveMinDistant < minDistance)
-            {
-				saveMinDistant = minDistance;
-				Console.WriteLine(saveMinDistant);
-
-			}
-
 			int newDistance = this.path.Count + this.heuristic(stand);
 			if (newDistance > minDistance) {
 				return newDistance;
@@ -156,16 +149,18 @@ namespace WaterSortPuzzleSolver
 			////!!!!
 			while (true)
 			{
-				FlasksStand newStand;
-				(newStand, from, to) = stand.ReachNextStand(from, to);
+				(from, to) = stand.ReachNextStand(from, to);
 				if (from == -1)
 					break;
-				if (this.hashtable.Check(ref newStand)) {
+				this.path.Add(stand.lastTransfer);
+				if (this.hashtable.Check(ref stand)) {
+					stand.BackTransfer(this.path.Last().Item2, this.path.Last().Item1);
+					this.path.RemoveAt(this.path.Count - 1);
 					continue;
 				}
-				this.path.Add(newStand.lastTransfer);
+				
 
-				int newReachableDistance = this.iterate(newStand, minDistance);
+				int newReachableDistance = this.iterate(stand, minDistance);
 				if (newReachableDistance == -1) {
 					return -1;
 				}
@@ -173,9 +168,11 @@ namespace WaterSortPuzzleSolver
 				if (newReachableDistance < newMinDistance) {
 					newMinDistance = newReachableDistance;
 				}
-
-				this.hashtable.RemoveStand(ref newStand);
+				if (!this.hashtable.RemoveStand(ref stand))
+					;
+				stand.BackTransfer(this.path.Last().Item2, this.path.Last().Item1);
 				this.path.RemoveAt(this.path.Count - 1);
+				
 			}
 			
 			return newMinDistance;
