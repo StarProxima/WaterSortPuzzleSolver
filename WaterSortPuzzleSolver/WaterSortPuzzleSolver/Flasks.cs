@@ -71,14 +71,6 @@ namespace WaterSortPuzzleSolver
         public int stepToReach;
         public (int, int) lastTransfer = (0,0);
 
-        public void BackTransfer(int from, int to)
-        {
-            int t = flasksState[from].Last();
-            flasksState[to].Add(t);
-            flasksState[from].RemoveAt(flasksState[from].Count - 1);
-            stepToReach--;
-            lastTransfer = (-1, -1);
-        }
         public bool Transfer(int from, int to)
         {
             if (flasksState[from].Count > 0 && flasksState[to].Count < maxTowerColor)
@@ -139,25 +131,25 @@ namespace WaterSortPuzzleSolver
             return true;
         }
         ////!!!!////!!!!
-        public (int, int) ReachNextStand(int startfrom, int startto)
+        public (FlasksStand, int, int) ReachNextStand(int startfrom, int startto)
         {
+            FlasksStand newStand = new FlasksStand(this);
             for (; startfrom < this.flasksState.Count; startfrom++)
             {
                 for (; startto < this.flasksState.Count; startto++)
                 {
-                    if (startfrom == startto
-
-                        || (flasksState.ColorTowers(startto) == 1 && flasksState[startfrom].Count == 0)
-                        || (flasksState.ColorTowers(startfrom) == 1 && flasksState[startto].Count == 0))
+                    if (startfrom == startto 
+                        || (flasksState.FlaskIsTerminal(startto) && flasksState[startto].Count != 0)
+                        || (flasksState.FlaskIsTerminal(startfrom) && flasksState[startfrom].Count != 0 ))
                         continue;
-                    if (this.Transfer(startfrom, startto))
+                    if (newStand.TransferTower(startfrom, startto))
                     {
-                        return (startfrom, startto + 1);
+                        return (newStand, startfrom, startto + 1);
                     }
                 }
                 startto = 0;
             }
-            return (-1, -1);
+            return (null, -1, -1);
         }
         public void InitializationRandom(int flasksCount, int emptyFlasks, int newMaxTowerColor)
         {
@@ -180,7 +172,7 @@ namespace WaterSortPuzzleSolver
             for (int i = 0; i < emptyFlasks; i++)
                 flasksState.Add(new Collection<int>());
 
-            for (int i = 0; i < 20;)
+            for (int i = 0; i < 1000000;)
             {
                 if (this.Transfer(random.Next(0, this.flasksState.Count), random.Next(0, this.flasksState.Count)))
                 {

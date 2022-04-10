@@ -77,10 +77,20 @@ namespace WaterSortPuzzleSolver
 
 					 heuristic += stand.flasksState.ColorTowers(i) - 1;
 					 if (bottomColorsCount.ContainsKey(flask[0]))
-						 heuristic++;
+						 bottomColorsCount[flask[0]]++;
 					 else
 						 bottomColorsCount[flask[0]] = 1;
 			}
+			//);
+			////!!!!
+			//замена для проверки
+			Parallel.ForEach(bottomColorsCount.Values, bottomColorCnt =>
+			{
+				//foreach (int bottomColorCnt in bottomColorsCount.Values) 
+				//{
+				heuristic += bottomColorCnt - 1;
+			}
+			);
 			return heuristic;
         }
 
@@ -137,30 +147,25 @@ namespace WaterSortPuzzleSolver
 			////!!!!
 			while (true)
 			{
-				(from, to) = stand.ReachNextStand(from, to);
+				FlasksStand newStand;
+				(newStand, from, to) = stand.ReachNextStand(from, to);
 				if (from == -1)
 					break;
-				this.path.Add(stand.lastTransfer);
-				if (this.hashtable.Check(ref stand))
-				{
-					stand.BackTransfer(this.path.Last().Item2, this.path.Last().Item1);
-					this.path.RemoveAt(this.path.Count - 1);
+				if (this.hashtable.Check(ref newStand)) {
 					continue;
 				}
+				this.path.Add(newStand.lastTransfer);
 
-
-				int newReachableDistance = this.iterate(stand, minDistance);
-				if (newReachableDistance == -1)
-				{
+				int newReachableDistance = this.iterate(newStand, minDistance);
+				if (newReachableDistance == -1) {
 					return -1;
 				}
 
-				if (newReachableDistance < newMinDistance)
-				{
+				if (newReachableDistance < newMinDistance) {
 					newMinDistance = newReachableDistance;
 				}
-				this.hashtable.RemoveStand(ref stand);
-				stand.BackTransfer(this.path.Last().Item2, this.path.Last().Item1);
+
+				this.hashtable.RemoveStand(ref newStand);
 				this.path.RemoveAt(this.path.Count - 1);
 			}
 			
