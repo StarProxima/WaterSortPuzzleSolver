@@ -86,6 +86,9 @@ namespace WaterSortPuzzleSolver
 		public List<(int, int)> path;
 
 		public HashtableFlask hashtable;
+
+
+		int lastMinDistance = 0;
 		
 		public Rezult Solve(FlasksStand initialState)
 		{
@@ -98,6 +101,11 @@ namespace WaterSortPuzzleSolver
 			
 			while (true) 
 			{
+				if(minDistance != lastMinDistance)
+                {
+					lastMinDistance = minDistance;
+					Console.WriteLine("heuristic val:" + lastMinDistance);
+                }
 				minDistance = this.iterate(initialState, minDistance);
 				if (minDistance == -1) 
 				{

@@ -61,7 +61,7 @@ namespace WaterSortPuzzleSolver
     public class FlasksStand
     {
        
-        int maxTowerColor;
+        int maxFlaskSize;
 
         public Flasks flasksState;
         public int stepToReach;
@@ -69,7 +69,7 @@ namespace WaterSortPuzzleSolver
 
         public bool Transfer(int from, int to)
         {
-            if (flasksState[from].Count > 0 && flasksState[to].Count < maxTowerColor)
+            if (flasksState[from].Count > 0 && flasksState[to].Count < maxFlaskSize)
             {
                 int t = flasksState[from].Last();
                 flasksState[to].Add(t);
@@ -83,7 +83,7 @@ namespace WaterSortPuzzleSolver
         public bool TransferTower(int from, int to)
         {
 
-            if (flasksState[from].Count > 0 && flasksState[to].Count < maxTowerColor)
+            if (flasksState[from].Count > 0 && flasksState[to].Count < maxFlaskSize)
             {
                 int colorInTower = 1;
                 int t = flasksState[from].Last();
@@ -94,7 +94,7 @@ namespace WaterSortPuzzleSolver
                     else
                         break;
                 }
-                if (flasksState[to].Count + colorInTower > maxTowerColor)
+                if (flasksState[to].Count + colorInTower > maxFlaskSize)
                     return false;
                 for (int i = 0; i < colorInTower; i++)
                 {
@@ -147,8 +147,9 @@ namespace WaterSortPuzzleSolver
         }
         public void InitializationRandom(int flasksCount, int maxFlaskSize, int flaskSize, int emptyFlasks)
         {
-            maxTowerColor = maxFlaskSize;
-            flasksState.maxColorSize = flaskSize;
+            this.maxFlaskSize = maxFlaskSize;
+            flasksState = new Flasks();
+            
            
             for (int i = 0; i < flasksCount; i++)
             {
@@ -171,6 +172,18 @@ namespace WaterSortPuzzleSolver
                 }
             }
 
+            //flasksState = new Flasks() {
+            //    new Collection<int>() { 1,1,2,3},
+            //    new Collection<int>() { 4,3,5,2 },
+            //    new Collection<int>() { 6,1,7,8 },
+            //    new Collection<int>() { 9,9,5,3 },
+            //    new Collection<int>() { 7,4,4,5 },
+            //    new Collection<int>() { 5,9,2,6},
+            //    new Collection<int>() { 8,7,2,8},
+            //    new Collection<int>() { 7,1,4,8},
+            //    new Collection<int>() { 6,3,6,9 },
+            //};
+            flasksState.maxColorSize = flaskSize;
             stepToReach = 0;
            
         }
@@ -187,11 +200,8 @@ namespace WaterSortPuzzleSolver
             }
         }
 
-        public FlasksStand(int maxColors)
+        public FlasksStand()
         {
-            
-            flasksState = new Flasks();
-            stepToReach = 0;
         }
         
         public FlasksStand(FlasksStand flasksStand)
@@ -208,7 +218,7 @@ namespace WaterSortPuzzleSolver
             }
            
             flasksState.maxColorSize = flasksStand.flasksState.maxColorSize;
-            maxTowerColor = flasksStand.maxTowerColor;
+            maxFlaskSize = flasksStand.maxFlaskSize;
             stepToReach = flasksStand.stepToReach;
         }
     }
