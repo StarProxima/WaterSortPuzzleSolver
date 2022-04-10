@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\danek\\Desktop\\Лямбда\\Лабы\\WaterSortPuzzleSolver\\WaterSortPuzzleSolver\\WaterSortPuzzleSolver\\WaterSortPuzzleSolver.csproj": {}
+    "C:\\GitHub\\WaterSortPuzzleSolver\\WaterSortPuzzleSolver\\WaterSortPuzzleSolver\\WaterSortPuzzleSolver.csproj": {}
   },
   "projects": {
-    "C:\\Users\\danek\\Desktop\\Лямбда\\Лабы\\WaterSortPuzzleSolver\\WaterSortPuzzleSolver\\WaterSortPuzzleSolver\\WaterSortPuzzleSolver.csproj": {
+    "C:\\GitHub\\WaterSortPuzzleSolver\\WaterSortPuzzleSolver\\WaterSortPuzzleSolver\\WaterSortPuzzleSolver.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\danek\\Desktop\\Лямбда\\Лабы\\WaterSortPuzzleSolver\\WaterSortPuzzleSolver\\WaterSortPuzzleSolver\\WaterSortPuzzleSolver.csproj",
+        "projectUniqueName": "C:\\GitHub\\WaterSortPuzzleSolver\\WaterSortPuzzleSolver\\WaterSortPuzzleSolver\\WaterSortPuzzleSolver.csproj",
         "projectName": "WaterSortPuzzleSolver",
-        "projectPath": "C:\\Users\\danek\\Desktop\\Лямбда\\Лабы\\WaterSortPuzzleSolver\\WaterSortPuzzleSolver\\WaterSortPuzzleSolver\\WaterSortPuzzleSolver.csproj",
-        "packagesPath": "C:\\Users\\danek\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\danek\\Desktop\\Лямбда\\Лабы\\WaterSortPuzzleSolver\\WaterSortPuzzleSolver\\WaterSortPuzzleSolver\\obj\\",
+        "projectPath": "C:\\GitHub\\WaterSortPuzzleSolver\\WaterSortPuzzleSolver\\WaterSortPuzzleSolver\\WaterSortPuzzleSolver.csproj",
+        "packagesPath": "C:\\Users\\maksp\\.nuget\\packages\\",
+        "outputPath": "C:\\GitHub\\WaterSortPuzzleSolver\\WaterSortPuzzleSolver\\WaterSortPuzzleSolver\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\danek\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\maksp\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -54,7 +54,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.103\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.101\\RuntimeIdentifierGraph.json"
         }
       }
     }
