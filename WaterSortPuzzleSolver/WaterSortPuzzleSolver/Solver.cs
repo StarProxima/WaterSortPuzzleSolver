@@ -98,6 +98,8 @@ namespace WaterSortPuzzleSolver
 
 		double timeToSolve = 0;
 
+		int saveMinDistant = 0;
+
 		public List<(int, int)> path;
 
 		public HashtableFlask hashtable;
@@ -131,6 +133,13 @@ namespace WaterSortPuzzleSolver
 		int iterate(FlasksStand stand, int minDistance ) 
 		{
 			this.iterationCounter++;
+
+			if (saveMinDistant < minDistance)
+            {
+				saveMinDistant = minDistance;
+				Console.WriteLine(saveMinDistant);
+
+			}
 
 			int newDistance = this.path.Count + this.heuristic(stand);
 			if (newDistance > minDistance) {
