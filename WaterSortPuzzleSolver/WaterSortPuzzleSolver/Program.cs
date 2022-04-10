@@ -10,7 +10,7 @@ namespace WaterSortPuzzleSolver
         {
             HashtableFlask hashtable = new HashtableFlask();
             FlasksStand flasks = new FlasksStand(5);
-            flasks.InitializationRandom(10, 2, 10);
+            flasks.InitializationRandom(5, 1, 5);
 
             flasks.Print();
 
@@ -28,6 +28,7 @@ namespace WaterSortPuzzleSolver
                 Console.Write("  ");
                 Console.WriteLine(x.Item2);
             }
+
             Console.WriteLine("Время в милисекундах - {0}", rez.Time);
             Console.WriteLine("Время в секундах - {0}", rez.Time/1000.0);
             Console.WriteLine("Время в минутах - {0}", rez.Time/1000.0/60.0);

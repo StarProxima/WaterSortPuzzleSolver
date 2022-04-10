@@ -61,36 +61,23 @@ namespace WaterSortPuzzleSolver
         {
 			int heuristic = 0;
 			Dictionary<int, int> bottomColorsCount = new Dictionary<int, int>();
-			////!!!!
-			///
+
 			for (int i = 0; i < stand.flasksState.Count; i++)
-			//Parallel.For(0, stand.flasksState.Count, i => 
-			//из-за парлелизма вылетат изза значений тк я не ебу почему потому что рома анимешник
 			{
-					 var flask = stand.flasksState[i];
+				var flask = stand.flasksState[i];
 
-					 if (flask.Count == 0)
-					 {
-						//return;
-					    continue;
-					 }
+				if (flask.Count == 0)
+					continue;
 
-					 heuristic += stand.flasksState.ColorTowers(i) - 1;
-					 if (bottomColorsCount.ContainsKey(flask[0]))
-						 bottomColorsCount[flask[0]]++;
-					 else
-						 bottomColorsCount[flask[0]] = 1;
+				heuristic += stand.flasksState.ColorTowers(i) - 1;
+
+				if (bottomColorsCount.ContainsKey(flask[0]))
+					heuristic++;
+				else
+					bottomColorsCount[flask[0]] = 0;
+					
 			}
-			//);
-			////!!!!
-			//замена для проверки
-			Parallel.ForEach(bottomColorsCount.Values, bottomColorCnt =>
-			{
-				//foreach (int bottomColorCnt in bottomColorsCount.Values) 
-				//{
-				heuristic += bottomColorCnt - 1;
-			}
-			);
+			
 			return heuristic;
         }
 
