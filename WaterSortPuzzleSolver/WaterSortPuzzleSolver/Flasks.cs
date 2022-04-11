@@ -178,22 +178,22 @@ namespace WaterSortPuzzleSolver
                 }
             }
 
-            flasksState = new Flasks() {
-                new Collection<int>(){ 1,2,3,4},
-                new Collection<int>(){ 5,6,7,8},
-                new Collection<int>(){ 7,5,8,4},
-                new Collection<int>(){ 9,1,10,10},
-                new Collection<int>(){ 11,6,6,5},
-                new Collection<int>(){ 11,1,4,3},
-                new Collection<int>(){ 3,4,12,7},
-                new Collection<int>(){ 5,7,2,12},
-                new Collection<int>(){ 3,12,6,1},
-                new Collection<int>(){ 11,8,9,10},
-                new Collection<int>(){ 11,10,2,9},
-                new Collection<int>(){ 9,12,2,8},
-                new Collection<int>(),
-                new Collection<int>()
-            };
+            //flasksState = new Flasks() {
+            //    new Collection<int>(){ 1,2,3,4},
+            //    new Collection<int>(){ 5,6,7,8},
+            //    new Collection<int>(){ 7,5,8,4},
+            //    new Collection<int>(){ 9,1,10,10},
+            //    new Collection<int>(){ 11,6,6,5},
+            //    new Collection<int>(){ 11,1,4,3},
+            //    new Collection<int>(){ 3,4,12,7},
+            //    new Collection<int>(){ 5,7,2,12},
+            //    new Collection<int>(){ 3,12,6,1},
+            //    new Collection<int>(){ 11,8,9,10},
+            //    new Collection<int>(){ 11,10,2,9},
+            //    new Collection<int>(){ 9,12,2,8},
+            //    new Collection<int>(),
+            //    new Collection<int>()
+            //};
             flasksState.maxColorSize = flaskSize;
             stepToReach = 0;
            
