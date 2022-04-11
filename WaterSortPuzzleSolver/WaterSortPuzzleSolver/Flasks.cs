@@ -94,6 +94,12 @@ namespace WaterSortPuzzleSolver
                     else
                         break;
                 }
+
+                //for(; colorInTower > 1; colorInTower--)
+                //{
+                //    if (flasksState[to].Count + colorInTower <= maxFlaskSize)
+                //        break;
+                //}
                 if (flasksState[to].Count + colorInTower > maxFlaskSize)
                     return false;
                 for (int i = 0; i < colorInTower; i++)
@@ -172,17 +178,22 @@ namespace WaterSortPuzzleSolver
                 }
             }
 
-            //flasksState = new Flasks() {
-            //    new Collection<int>() { 1,1,2,3},
-            //    new Collection<int>() { 4,3,5,2 },
-            //    new Collection<int>() { 6,1,7,8 },
-            //    new Collection<int>() { 9,9,5,3 },
-            //    new Collection<int>() { 7,4,4,5 },
-            //    new Collection<int>() { 5,9,2,6},
-            //    new Collection<int>() { 8,7,2,8},
-            //    new Collection<int>() { 7,1,4,8},
-            //    new Collection<int>() { 6,3,6,9 },
-            //};
+            flasksState = new Flasks() {
+                new Collection<int>(){ 1,2,3,4},
+                new Collection<int>(){ 5,6,7,8},
+                new Collection<int>(){ 7,5,8,4},
+                new Collection<int>(){ 9,1,10,10},
+                new Collection<int>(){ 11,6,6,5},
+                new Collection<int>(){ 11,1,4,3},
+                new Collection<int>(){ 3,4,12,7},
+                new Collection<int>(){ 5,7,2,12},
+                new Collection<int>(){ 3,12,6,1},
+                new Collection<int>(){ 11,8,9,10},
+                new Collection<int>(){ 11,10,2,9},
+                new Collection<int>(){ 9,12,2,8},
+                new Collection<int>(),
+                new Collection<int>()
+            };
             flasksState.maxColorSize = flaskSize;
             stepToReach = 0;
            

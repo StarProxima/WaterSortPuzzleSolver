@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Diagnostics;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Collections.ObjectModel;
 
 namespace WaterSortPuzzleSolver
 {
@@ -106,6 +107,7 @@ namespace WaterSortPuzzleSolver
 					lastMinDistance = minDistance;
 					Console.WriteLine("heuristic val:" + lastMinDistance);
                 }
+				
 				minDistance = this.iterate(initialState, minDistance);
 				if (minDistance == -1) 
 				{
@@ -134,16 +136,39 @@ namespace WaterSortPuzzleSolver
 			{
 				return -1;
 			}
+            //for(int i = 0; i < stand.flasksState.Count; i++)
+            //         {
+            //	if(stand.flasksState[i].Count == 1 && stand.flasksState[i][0] == 5 )
+            //		stand.Print();
+            //}
 
-			int newMinDistance = Int32.MaxValue;
+            stand.Print();
+            Console.WriteLine(newDistance);
+            Console.WriteLine("---------------");
+            int newMinDistance = Int32.MaxValue;
 			int from = 0; int to = 0;
-			
+			bool b = false;
 			while (true)
 			{
 				FlasksStand newStand;
+				
 				(newStand, from, to) = stand.ReachNextStand(from, to);
+				
 				if (from == -1)
 					break;
+				//if (stand.flasksState[from].Count == 3 && stand.flasksState.ColorTowers(from) == 3 && stand.flasksState[to].Count == 1 && stand.flasksState.ColorTowers(from) == 1)
+				//{
+				//	Console.WriteLine("-------------");
+				//	Console.WriteLine(from + " " + to);
+				//	stand.Print();
+
+				//}
+				//if (b)
+				//{
+
+				//	newStand.Print();
+				//	Console.WriteLine("-------------");
+				//}
 				if (this.hashtable.Check(ref newStand)) {
 					continue;
 				}

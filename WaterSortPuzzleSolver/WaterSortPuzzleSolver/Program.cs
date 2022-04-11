@@ -10,7 +10,7 @@ namespace WaterSortPuzzleSolver
         {
             HashtableFlask hashtable = new HashtableFlask();
             FlasksStand flasks = new FlasksStand();
-            flasks.InitializationRandom(8, 5, 4, 1);
+            flasks.InitializationRandom(9, 5, 4, 0);
 
             flasks.Print();
 
